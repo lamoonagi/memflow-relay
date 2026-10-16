@@ -23,14 +23,13 @@ jobs:
         run: pip install build
 
       - name: Build sdist and wheel
-        working-directory: memflow-relay
         run: python -m build
 
       - name: Upload dist artifacts
         uses: actions/upload-artifact@v4
         with:
           name: memflow-relay-dist
-          path: memflow-relay/dist/
+          path: dist/
 
   publish:
     name: Publish to PyPI
