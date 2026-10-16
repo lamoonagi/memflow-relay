@@ -1,0 +1,56 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "memflow-relay"
+version = "0.1.1"
+description = "MemFlow Relay — local Gemini proxy with shadow/safe/optimize modes by LamoonAGI"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [{ name = "LamoonAGI", email = "dev@lamoonagi.com" }]
+requires-python = ">=3.11"
+keywords = ["memflow", "gemini", "llm", "proxy", "context-optimizer", "lamoonagi"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "httpx>=0.27.0",
+    "typer>=0.12.0",
+    "pydantic>=2.7.0",
+    "pydantic-settings>=2.3.0",
+    "uvicorn[standard]>=0.30.0",
+    "starlette>=0.37.0",
+    "anyio>=4.4.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.2.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-httpx>=0.30.0",
+    "respx>=0.21.0",
+    "coverage>=7.5.0",
+]
+
+[project.scripts]
+memflow-relay = "memflow_relay.cli:main"
+
+[project.urls]
+Homepage = "https://www.lamoonagi.com/en/memflow/relay/"
+Documentation = "https://www.lamoonagi.com/en/memflow/docs/"
+Repository = "https://github.com/lamoonagi/memflow-relay"
+"Bug Tracker" = "https://github.com/lamoonagi/memflow-relay/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/memflow_relay"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
